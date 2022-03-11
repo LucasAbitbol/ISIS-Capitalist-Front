@@ -47,3 +47,33 @@ grid-template-columns: 20% 80%;
 .product {
   display: grid;
 grid-template-columns: 1fr 1fr; }
+
+.logomonde{
+  height : 50px;
+  width : 50px;
+  position: relative;
+  top : 30px;
+  left : -570px;
+}
+
+.multi {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+  font-size: 15px;
+  padding: 10px 24px;
+  position : relative;
+  top : -20px;
+}
+
+.multi:hover {
+    transition: ease-in-out 0.5s;
+  background-color: #008CBA;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.menu{
+  position : relative;
+  top : 80px;
+}
