@@ -6,21 +6,10 @@ import { useState } from "react"
 type ManagerProps = {
     world : World 
     services : Services
+    showManagers : Function
 }
 
-export default function Manager({world, services}: ManagerProps){
-
-    const [window,setWindow] = useState(false)
-
-    function showManagers(){
-        setWindow(true)
-        return window
-    }
-
-    function hideManagers(){
-        setWindow(false)
-        return window
-    }
+export default function Manager({world, services,showManagers}: ManagerProps){
 
 
 
@@ -29,7 +18,7 @@ export default function Manager({world, services}: ManagerProps){
 <div>
 
 <div className="modal">
- <div> <h1 className="title">Managers make you feel better !</h1> </div>
+ <div> <h1 className="title">Recrute des coachs !</h1> </div>
  <div> {world.managers.pallier.filter( manager => !manager.unlocked).map(manager =>
  <div key={manager.idcible} className="managergrid">
  <div>
@@ -37,7 +26,7 @@ export default function Manager({world, services}: ManagerProps){
  <img alt="managerlogo" className="round" src= {
 services.server + manager.logo} />
  </div>
- </div>
+ </div> 
  <div className="infosmanager">
  <div className="managername"> {manager.name} </div>
  <div className="managercible"> {world.products.product[manager.idcible-1].name} </div>
@@ -49,7 +38,6 @@ services.server + manager.logo} />
  </div>
 )
  }
- <button className="closebutton" onClick={hideManagers}> Close</button>
 
  </div>
 </div>

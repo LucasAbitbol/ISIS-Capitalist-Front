@@ -5,11 +5,14 @@ import Services from "./Services";
 import {World, Product} from './world';
 import ProductComponent from './Product';
 import { transform } from './utils';
+import Manager from './Manager';
 
 function App() {
   const [services, setServices] = useState(new Services(""))
   const [world, setWorld] = useState(new World())
   const [qtmulti,setqtmulti] = useState("1")
+  const [window,setWindow] = useState(false)
+  var username = "Wass"
 
 
   useEffect(() => {
@@ -28,6 +31,18 @@ function onProductionDone(p: Product): void {
   addToScore(gain)
  }
  
+function showManagers(){
+  if (window ==false){
+    setWindow(true)
+    
+  }
+  else {
+    setWindow(false)
+   
+  }
+} 
+
+
  function addToScore(gain: number){
    world.score += gain
  }
@@ -59,16 +74,16 @@ function onProductionDone(p: Product): void {
       <div className="header"> 
       <span> {world.name} </span>
       <div className="argent">
-      <span dangerouslySetInnerHTML={{__html: transform(world.money)}}></span>
+      <span>Budget : </span><span dangerouslySetInnerHTML={{__html: transform(world.money)}}></span><span>$</span>
       </div>
         <div><button className='multi' onClick={multiplicateur}>x{qtmulti}</button> </div> 
-        <div> ID du joueur </div>
+        <div> {username} </div>
       </div>
 
       <div className="main">
         <div className='menu'> 
           <ul> <button className='multi'>Cash Upgrades</button> </ul>
-          <ul><button className='multi'> Managers</button> </ul>
+          <ul><button className='multi' onClick={showManagers}> Managers</button> </ul>
           <ul><button className='multi'> Angel Upgrades</button> </ul>
           <ul><button className='multi'> Investors</button></ul>
            </div>
@@ -80,6 +95,11 @@ function onProductionDone(p: Product): void {
       <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[4]} services={ services }/> 
       <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[5]} services={ services }/> 
     </div>
+    { window &&
+    <div className='manageurs'>
+      <Manager world={world} services={ services } showManagers={showManagers} />
+    </div>
+}
         </div>
     </div>
   );
