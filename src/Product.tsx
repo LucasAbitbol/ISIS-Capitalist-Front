@@ -17,9 +17,10 @@ type ProductProps = {
         {
 
             const [progress, setProgress] = useState(0)
-            const [mult,setmult] = useState(1)
-            const [caca,setcaca] = useState(0)
             const savedCallback = useRef(calcScore)
+            // calcMaxcanBuy()
+
+
 useEffect(() => savedCallback.current = calcScore)
 useEffect(() => {
  let timer = setInterval(() => savedCallback.current(), 5000)
@@ -40,23 +41,23 @@ function startFabrication(){
 }
 
 
-            function calcMaxcanBuy(){
+            function calcMaxcanBuy(){ //appeler dans calcscore pour update xmax
                 const qtmax = (Math.log(1 - (cash*(1-prod.croissance))/prod.cout))/Math.log(prod.croissance)
+                if(qtmulti==2){
         if (qtmax <= 0){
             prod.quantite = 0
         }else{
-            prod.quantite = Math.floor(qtmax)
+            qtmulti = Math.floor(qtmax)
         }
-        return prod.quantite
-            }
+        return qtmulti
+            }}
 
-            function qtmultival(){
-            }
+            
                 
             
             if (prod==null){
                 return (
-                    <div></div>
+                    <div>oui</div>
                 )
             }   
              else{                
@@ -65,14 +66,14 @@ function startFabrication(){
               <div>
           <div className="product2">
           <img className="logo" onClick={startFabrication} src={services.server + prod.logo} /> 
-    <div> <span className="nameprod">{mult} {prod.name}</span></div>
+    <div> <span className="nameprod">{qtmulti} {prod.name}</span></div>
    <div className="progressbar"> <Box sx={{width: '100%'}}>
  <ProgressBar transitionDuration={"0.1s"} customLabel={" "}
 completed={progress}/>
 </Box> </div>
-    <div> <button className='prix' >{prod.cout*mult}$</button></div>
-    <div className='tpsprod'>Temps de recrutement  pour {qtmulti} joueurs : {prod.vitesse/1000*mult} secondes</div>
-    <div className='qte'>Joueurs formés :{prod.quantite}</div>
+    <div> <button className='prix' disabled={cash<qtmulti*prod.cout} >{qtmulti*prod.cout}$</button></div>
+    <div className='tpsprod'>Temps de recrutement  pour {qtmulti} joueurs : {prod.vitesse/1000*qtmulti} secondes</div>
+    <div className='qte'>Joueurs formés : {prod.quantite}</div>
 </div>
                   
                   </div>

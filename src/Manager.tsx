@@ -9,18 +9,15 @@ type ManagerProps = {
     showManagers : Function
 }
 
-export default function Manager({world, services,showManagers}: ManagerProps){
-    const [caca,setCaca] = useState("caca")
+
+export default function Manager({world, services,showManagers}: ManagerProps): JSX.Element{
     const [dispo,setDispo] = useState(false)
+
+    
 function hireManager(){
- setCaca("")
+
 }
 
-    function hidebtn(manager : Pallier){
-   if (world.money > manager.seuil ){
-       setDispo(true)
-   }
-}
     
     return (
         

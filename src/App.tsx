@@ -10,6 +10,7 @@ import Angelupgrade from './Angelsupgrades';
 import AngelsUpgrades from './Angelsupgrades';
 import CashUpgrades from './CashUpgrades';
 import Investor from './Investor';
+import Badge from '@mui/material/Badge';
 
 function App() {
   const [services, setServices] = useState(new Services(""))
@@ -20,6 +21,7 @@ function App() {
   const [windowup,setWindowup] = useState(false)
   const [windowinv,setWindoinv] = useState(false)
   const [pallier, setPallier]= useState(new Pallier())
+  const [managers,setManagers]= useState(0)
   var username = "Wass"
 
 
@@ -93,7 +95,6 @@ function showUpgrades(){
   }
 }
 
-
  function addToScore(gain: number){
    world.score += gain
  }
@@ -140,7 +141,7 @@ function showUpgrades(){
       <div className="main">
         <div className='menu'> 
           <ul> <button className='multi' onClick={showUpgrades}>Cash Upgrades</button> </ul>
-          <ul><button className='multi' onClick={showManagers}> Managers</button> </ul>
+          <ul><Badge badgeContent={3} color="primary"><button className='multi' onClick={showManagers}> Managers</button></Badge> </ul>
           <ul><button className='multi' onClick={showAngels}> Angel Upgrades</button> </ul>
           <ul><button className='multi' onClick={showInvestor}> Investors</button></ul>
            </div>
@@ -154,7 +155,7 @@ function showUpgrades(){
     </div>
     { window &&
     <div className='manageurs'>
-      <Manager world={world} services={ services } showManagers={showManagers} />
+      <Manager world={world} services={ services } showManagers={showManagers}/>
     </div>
 }
 
