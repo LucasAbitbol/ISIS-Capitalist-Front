@@ -25,6 +25,13 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    }
 
+   .managercost{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: relative;
+    left : 150px;
+    top : -20px;
+   }
+
    .round{
     height : 100px;
     width : 100px;
@@ -35,7 +42,36 @@
    }
 
    .managergrid{
+     
        border : solid black 2px;
        margin: 5px;
    }
    
+   .hire {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+    font-size: 20px;
+    padding: 10px 24px;
+    height : 50px;
+    width : 150px;
+    position : relative;
+    top : -30px;
+    left : -150px;
+  }
+
+  .hire:hover {
+      transition: ease-in-out 0.5s;
+    background-color: #008CBA;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+.hire:disabled{
+  border: 2px solid red;
+  
+}
+
+.hire:disabled:hover{
+  background-color: red;
+
+}

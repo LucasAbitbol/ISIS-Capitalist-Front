@@ -1,5 +1,5 @@
 import "./manager.css"
-import {World} from "./world"
+import {Pallier, World} from "./world"
 import {Services} from "./Services"
 import { useState } from "react"
 
@@ -10,11 +10,20 @@ type ManagerProps = {
 }
 
 export default function Manager({world, services,showManagers}: ManagerProps){
+    const [caca,setCaca] = useState("caca")
+    const [dispo,setDispo] = useState(false)
+function hireManager(){
+ setCaca("")
+}
 
-
-
+    function hidebtn(manager : Pallier){
+   if (world.money > manager.seuil ){
+       setDispo(true)
+   }
+}
+    
     return (
-
+        
 <div>
 
 <div className="modal">
@@ -31,10 +40,13 @@ services.server + manager.logo} />
  <div className="managername"> Nom complet : {manager.name} </div>
  <div className="managercible"> Spécialité : Il recrute automatiquement les {world.products.product[manager.idcible-1].name} </div>
  <div className="managercost"> Prix de recrutement : { manager.seuil} $</div>
+ </div> 
+ <div>
+
+ <button disabled={world.money<manager.seuil} className="hire" onClick={hireManager}><span>Recruter !</span></button>
+
  </div>
- <div /*onClick={() => manager.hireManager(manager)}*/>
- <button disabled={world.money < manager.seuil}> Hire !</button>
- </div>
+
  </div>
 )
  }
