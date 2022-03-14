@@ -36,16 +36,16 @@ type ProductProps = {
             
 
             function calcScore(){
-                calcMaxcanBuy()
+               // calcMaxcanBuy()
                 
                 //  if (prod.quantite=0){
                      
                 //  }
                 
                 //  else{
-                 //       if (prod.managerUnlocked == true){
-                   //         startFabrication()
-                     //   }
+                //        if (prod.managerUnlocked == true){
+                //            startFabrication()
+                //        }
                 //      let tpsecoule = Date.now()-prod.lastupdate 
                 //      prod.timeleft -= tpsecoule
                         
@@ -90,16 +90,16 @@ type ProductProps = {
                 return prod.timeleft
             }
 
-            function calcMaxcanBuy(){ //appeler dans calcscore pour update xmax
-                const qtmax = (Math.log(1 - (cash*(1-prod.croissance))/prod.cout))/Math.log(prod.croissance)
-                if(qtmulti==2){
-        if (qtmax <= 0){
-            prod.quantite = 0
-        }else{
-            qtmulti = Math.floor(qtmax)
-        }
-        return qtmulti
-            }}
+        //     function calcMaxcanBuy(){ //appeler dans calcscore pour update xmax
+        //         const qtmax = (Math.log(1 - (cash*(1-prod.croissance))/prod.cout))/Math.log(prod.croissance)
+        //         if(qtmulti==2){
+        // if (qtmax <= 0){
+        //     prod.quantite = 0
+        // }else{
+        //     qtmulti = Math.floor(qtmax)
+        // }
+        // return qtmulti
+        //     }}
 
             
                 

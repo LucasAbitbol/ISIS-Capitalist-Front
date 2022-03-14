@@ -175,7 +175,7 @@ function updateMoney(gain:number){
       <span>Budget : </span><span dangerouslySetInnerHTML={{__html: transform(world.money)}}></span><span>$</span>
       </div>
         <div><button id='mult' className='multi' onClick={multiplicateur}>x{qtmulti}</button> </div>
-        <div> {username} </div>
+        <div> {name} </div>
       </div>
 
       <div className="main">

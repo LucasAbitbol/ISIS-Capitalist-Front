@@ -16,6 +16,7 @@
 }
 
 .product2{
+  background-color: #e2fcfb;
     display: grid;
     grid-template-columns: 50% auto;
     border : solid black 2px;

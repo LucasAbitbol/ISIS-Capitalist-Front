@@ -17,18 +17,14 @@ export default function Manager({ manager,services, world,showManagers, onManage
 
     
     function hireManager(){
-        if (world.money>=manager.seuil){
-            // On transmet l'info à l'app
-            onManagerBuy(manager.seuil, manager)
-            // On désaffiche le manager
-            manager.unlocked = true
-            // On prévient le produit concerné
-            let product = world.products.product.find(produit => produit.id == manager.idcible)
-            // @ts-ignore
-            console.log(product.name)
-            // @ts-ignore
-            product.managerUnlocked = true
-        }
+        // if (world.money>=manager.seuil){
+        //     onManagerBuy(manager.seuil, manager)
+        //     manager.unlocked = true
+        //     let product = world.products.product.find(produit => produit.id == manager.idcible)
+        //     console.log(product.name)
+           
+        //     product.managerUnlocked = true
+        // }
     }
 
     

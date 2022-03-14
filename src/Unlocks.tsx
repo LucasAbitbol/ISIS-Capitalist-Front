@@ -18,10 +18,10 @@ export default function Unlocks({world,prod, services, showUnlocks}: UnlocksProp
 
 <div className="modal">
     {prod.palliers.pallier.map( unlock =>
-        <div key={unlock.idcible} className="unlock">
+        <div key={unlock.idcible} className="unlo">
             <div className="infosmanager">
                 <div className="managername"> { unlock.name} </div>
-                <img alt="managerlogo" className="round" src= {services.server + unlock.logo} />
+                <img alt="managerlogo" className="round2" src= {services.server + unlock.logo} />
                 <div className="managercost"> { unlock.seuil} </div>
                 <div className="managercible"> {world.products.product[unlock.idcible-1].name} </div>
             </div>
