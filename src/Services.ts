@@ -1,4 +1,4 @@
-import {World} from './world';
+import {Pallier, World} from './world';
 import axios, {AxiosError, AxiosPromise} from "axios";
 
 export class Services {
@@ -23,6 +23,36 @@ export class Services {
         headers: Services.setHeaders(this.user)
         }).catch(Services.handleError)
 }
+
+putManager(manager : Pallier): AxiosPromise<Response> {
+    console.log("Recrutement ouvert")
+    return axios({
+    method: 'put',
+    url: this.api + '/manager',
+    data: manager,
+    headers: Services.setHeaders(this.user)
+    }).catch(Services.handleError)
+   }
+
+   putUpgrade(upgrade : Pallier): AxiosPromise<Response> {
+    return axios({
+        method: 'put',
+        url: this.api + '/upgrade',
+        data: upgrade,
+        headers: Services.setHeaders(this.user)
+    }).catch(Services.handleError)
+}
+
+resetWorld(upgrade : Pallier): AxiosPromise<Response> {
+    console.log("Reset")
+    return axios({
+        method: 'delete',
+        url: this.api + '/world',
+        data: upgrade,
+        headers: Services.setHeaders(this.user)
+    }).catch(Services.handleError)
+}
+   
 }
 
 export default Services;

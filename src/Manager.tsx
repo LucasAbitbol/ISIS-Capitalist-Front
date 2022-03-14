@@ -4,19 +4,32 @@ import {Services} from "./Services"
 import { useState } from "react"
 
 type ManagerProps = {
-    world : World 
-    services : Services
-    showManagers : Function
+    manager: Pallier
+    services: Services
+    world: World
+    showManagers : Function 
+    onManagerBuy: (seuil:number, manager:Pallier) => void
 }
 
 
-export default function Manager({world, services,showManagers}: ManagerProps): JSX.Element{
+export default function Manager({ manager,services, world,showManagers, onManagerBuy}:ManagerProps): JSX.Element{
     const [dispo,setDispo] = useState(false)
 
     
-function hireManager(){
-
-}
+    function hireManager(){
+        if (world.money>=manager.seuil){
+            // On transmet l'info à l'app
+            onManagerBuy(manager.seuil, manager)
+            // On désaffiche le manager
+            manager.unlocked = true
+            // On prévient le produit concerné
+            let product = world.products.product.find(produit => produit.id == manager.idcible)
+            // @ts-ignore
+            console.log(product.name)
+            // @ts-ignore
+            product.managerUnlocked = true
+        }
+    }
 
     
     return (
@@ -26,6 +39,7 @@ function hireManager(){
 <div className="modal">
  <div> <h1 className="title">Recrute des coachs !</h1> </div>
  <div> {world.managers.pallier.filter( manager => !manager.unlocked).map(manager =>
+ 
  <div key={manager.idcible} className="managergrid">
  <div>
  <div className="logo">
@@ -34,7 +48,7 @@ services.server + manager.logo} />
  </div>
  </div> 
  <div className="infosmanager">
- <div className="managername"> Nom complet : {manager.name} </div>
+ <div className="managername"> Nom complet : {manager.name} + {manager.unlocked} </div>
  <div className="managercible"> Spécialité : Il recrute automatiquement les {world.products.product[manager.idcible-1].name} </div>
  <div className="managercost"> Prix de recrutement : { manager.seuil} $</div>
  </div> 
@@ -44,8 +58,10 @@ services.server + manager.logo} />
 
  </div>
 
+
  </div>
-)
+ )
+
  }
 
  </div>

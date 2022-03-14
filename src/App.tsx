@@ -11,6 +11,7 @@ import AngelsUpgrades from './Angelsupgrades';
 import CashUpgrades from './CashUpgrades';
 import Investor from './Investor';
 import Badge from '@mui/material/Badge';
+import ManagerComponent from './Manager';
 
 function App() {
   const [services, setServices] = useState(new Services(""))
@@ -22,7 +23,8 @@ function App() {
   const [windowinv,setWindoinv] = useState(false)
   const [pallier, setPallier]= useState(new Pallier())
   const [managers,setManagers]= useState(0)
-  var username = "Wass"
+  const [username, setUsername] = useState("")
+  var name = "Wass"
 
 
   useEffect(() => {
@@ -33,6 +35,29 @@ function App() {
     }
     )
 }, [])
+
+
+// useEffect(() => {
+//   if (username !== "") {
+//   let services = new Services(username)
+//   setServices(services)
+//   services.getWorld().then(response => {
+//   let liste = compute_unlocks_list(response.data)
+//   setWorld(response.data)
+//   setUnlockList(liste)
+//   }
+//   )
+//   }
+//  }, [username])
+//  useEffect(() => {
+//   let username = localStorage.getItem("username");
+//   // si pas de username, on génère un username aléatoire
+//   if (!username || username === "") {
+//   username = "" + Math.floor(Math.random() * 10000);
+//   }
+//   localStorage.setItem("username", username);
+//   setUsername(username)
+//  }, [])
 
 
 
@@ -69,6 +94,11 @@ function showInvestor(){
   }
 } 
 
+// function onUserNameChanged(){
+//   let username = localStorage.getItem("username");
+//   localStorage.setItem("username", username);
+// }
+
 function showAngels(){
   if (windowange ==false){
     setWindowange(true)
@@ -98,6 +128,16 @@ function showUpgrades(){
  function addToScore(gain: number){
    world.score += gain
  }
+
+ function  onManagerBuy(seuil:number, manager:Pallier):void{
+  updateMoney(-seuil)
+  services.putManager(manager)
+}
+
+function updateMoney(gain:number){
+  /// Met à jour l'argent du joueur de manière positive (revenu gain positif) ou négative (achat gain négatif)
+  setWorld(world => ({...world, money:world.money + gain}))
+}
 
  function multiplicateur(){
   let btn = document.getElementById('mult')
@@ -146,16 +186,16 @@ function showUpgrades(){
           <ul><button className='multi' onClick={showInvestor}> Investors</button></ul>
            </div>
         <div className="product">
-      <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[0]} services={ services } cash={world.money}/> 
-      <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[1]} services={ services } cash={world.money}/>
-      <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[2]} services={ services } cash={world.money}/> 
-      <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[3]} services={ services } cash={world.money}/> 
-      <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[4]} services={ services } cash={world.money}/> 
-      <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[5]} services={ services } cash={world.money}/> 
+      <ProductComponent world={world} onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[0]} services={ services } cash={world.money}/> 
+      <ProductComponent world={world} onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[1]} services={ services } cash={world.money}/>
+      <ProductComponent world={world} onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[2]} services={ services } cash={world.money}/> 
+      <ProductComponent world={world} onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[3]} services={ services } cash={world.money}/> 
+      <ProductComponent world={world} onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[4]} services={ services } cash={world.money}/> 
+      <ProductComponent world={world} onProductionDone={onProductionDone} qtmulti={qtmulti} prod={ world.products.product[5]} services={ services } cash={world.money}/> 
     </div>
     { window &&
     <div className='manageurs'>
-      <Manager world={world} services={ services } showManagers={showManagers}/>
+      <ManagerComponent manager={pallier} world={world} services={ services } showManagers={showManagers} onManagerBuy={onManagerBuy}/>
     </div>
 }
 

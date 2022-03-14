@@ -69,3 +69,21 @@
     background-color: red;
   
   }
+
+  
+  .unlock {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+    font-size: 15px;
+    position : relative;
+    top : -10px;
+    left : -20px;
+  }
+  
+  .unlock:hover {
+      transition: ease-in-out 0.5s;
+    background-color: #008CBA;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
